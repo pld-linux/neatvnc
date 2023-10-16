@@ -6,7 +6,7 @@ Summary:	Neat VNC server library
 Summary(pl.UTF-8):	Neat VNC - schludna biblioteka serwera VNC
 Name:		neatvnc
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	ISC
 Group:		Libraries
 #https://github.com/any1/neatvnc/releases
