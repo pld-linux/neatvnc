@@ -5,13 +5,13 @@
 Summary:	Neat VNC server library
 Summary(pl.UTF-8):	Neat VNC - schludna biblioteka serwera VNC
 Name:		neatvnc
-Version:	0.6.0
-Release:	2
+Version:	0.7.1
+Release:	1
 License:	ISC
 Group:		Libraries
 #https://github.com/any1/neatvnc/releases
 Source0:	https://github.com/any1/neatvnc/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	3a43fa75904990c023794b6057006c85
+# Source0-md5:	230c9d236686d79d9f72e96c9842b70a
 URL:		https://github.com/any1/neatvnc
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	aml-devel >= 0.3.0
@@ -19,10 +19,12 @@ BuildRequires:	aml-devel < 0.4
 # libavcodec libavfilter libavutil
 BuildRequires:	ffmpeg-devel
 BuildRequires:	gcc >= 6:4.7
+BuildRequires:	gmp-devel
 BuildRequires:	gnutls-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libjpeg-turbo-devel
 BuildRequires:	meson
+BuildRequires:	nettle-devel
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pixman-devel
 BuildRequires:	pkgconfig
