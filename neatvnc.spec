@@ -5,13 +5,13 @@
 Summary:	Neat VNC server library
 Summary(pl.UTF-8):	Neat VNC - schludna biblioteka serwera VNC
 Name:		neatvnc
-Version:	0.7.1
+Version:	0.7.2
 Release:	1
 License:	ISC
 Group:		Libraries
-#https://github.com/any1/neatvnc/releases
+#Source0Download: https://github.com/any1/neatvnc/releases
 Source0:	https://github.com/any1/neatvnc/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	230c9d236686d79d9f72e96c9842b70a
+# Source0-md5:	62e977e4b78750e5fe8f228105f2e60e
 URL:		https://github.com/any1/neatvnc
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	aml-devel >= 0.3.0
