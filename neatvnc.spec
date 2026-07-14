@@ -5,17 +5,17 @@
 Summary:	Neat VNC server library
 Summary(pl.UTF-8):	Neat VNC - schludna biblioteka serwera VNC
 Name:		neatvnc
-Version:	0.9.5
+Version:	1.0.1
 Release:	1
 License:	ISC
 Group:		Libraries
 #Source0Download: https://github.com/any1/neatvnc/releases
 Source0:	https://github.com/any1/neatvnc/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	d9d6a3216c77d376f53654dc6d006c4a
+# Source0-md5:	81e6a811a77499439973cbafd11e0982
 URL:		https://github.com/any1/neatvnc
 BuildRequires:	Mesa-libgbm-devel
-BuildRequires:	aml-devel >= 0.3.0
-BuildRequires:	aml-devel < 0.4
+BuildRequires:	aml-devel >= 1.0.0
+BuildRequires:	aml-devel < 2.0.0
 # libavcodec libavfilter libavutil
 BuildRequires:	ffmpeg-devel
 BuildRequires:	gcc >= 6:4.7
@@ -56,8 +56,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki neatvnc
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	Mesa-libgbm-devel
-Requires:	aml-devel >= 0.3.0
-Requires:	aml-devel < 0.4
+Requires:	aml-devel >= 1.0.0
+Requires:	aml-devel < 2.0.0
 # libavcodec libavfilter libavutil
 Requires:	ffmpeg-devel
 Requires:	gnutls-devel
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYING README.md
 %attr(755,root,root) %{_libdir}/libneatvnc.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libneatvnc.so.0
+%attr(755,root,root) %ghost %{_libdir}/libneatvnc.so.1
 
 %files devel
 %defattr(644,root,root,755)
