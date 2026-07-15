@@ -109,12 +109,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYING README.md
-%attr(755,root,root) %{_libdir}/libneatvnc.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libneatvnc.so.1
+%{_libdir}/libneatvnc.so.*.*.*
+%ghost %{_libdir}/libneatvnc.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libneatvnc.so
+%{_libdir}/libneatvnc.so
 %{_includedir}/neatvnc.h
 %{_pkgconfigdir}/neatvnc.pc
 
