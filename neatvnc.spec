@@ -12,6 +12,7 @@ Group:		Libraries
 #Source0Download: https://github.com/any1/neatvnc/releases
 Source0:	https://github.com/any1/neatvnc/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	81e6a811a77499439973cbafd11e0982
+Patch0:		%{name}-nettle4.patch
 URL:		https://github.com/any1/neatvnc
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	aml-devel >= 1.0.0
@@ -86,6 +87,7 @@ Statyczna biblioteka neatvnc.
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 %build
 %meson \

@@ -1,0 +1,69 @@
+--- neatvnc-1.0.1/src/crypto/nettle/cipher.c.orig	2026-07-09 20:55:08.000000000 +0200
++++ neatvnc-1.0.1/src/crypto/nettle/cipher.c	2026-07-15 17:46:01.866331010 +0200
+@@ -22,6 +22,7 @@
+ #include <stdlib.h>
+ #include <nettle/aes.h>
+ #include <nettle/eax.h>
++#include <nettle/version.h>
+ 
+ struct crypto_aes_eax {
+ 	struct eax_aes128_ctx ctx;
+@@ -119,7 +120,11 @@ static bool crypto_cipher_aes_eax_encryp
+ 			(uint8_t*)dst->data + dst->len, src);
+ 	dst->len += src_len;
+ 
++#if NETTLE_VERSION_MAJOR >= 4
++	nettle_eax_aes128_digest(&self->enc_ctx.aes_eax.ctx, mac);
++#else
+ 	nettle_eax_aes128_digest(&self->enc_ctx.aes_eax.ctx, 16, mac);
++#endif
+ 
+ 	return true;
+ }
+@@ -131,7 +136,11 @@ static ssize_t crypto_cipher_aes_eax_dec
+ 	crypto_aes_eax_update_nonce(&self->dec_ctx.aes_eax);
+ 	nettle_eax_aes128_update(&self->dec_ctx.aes_eax.ctx, ad_len, ad);
+ 	nettle_eax_aes128_decrypt(&self->dec_ctx.aes_eax.ctx, len, dst, src);
++#if NETTLE_VERSION_MAJOR >= 4
++	nettle_eax_aes128_digest(&self->dec_ctx.aes_eax.ctx, mac);
++#else
+ 	nettle_eax_aes128_digest(&self->dec_ctx.aes_eax.ctx, 16, mac);
++#endif
+ 	return len;
+ }
+ 
+@@ -179,7 +188,11 @@ static bool crypto_cipher_aes256_eax_enc
+ 			(uint8_t*)dst->data + dst->len, src);
+ 	dst->len += src_len;
+ 
++#if NETTLE_VERSION_MAJOR >= 4
++	EAX_DIGEST(&self->enc_ctx.aes256_eax.ctx, aes256_encrypt, mac);
++#else
+ 	EAX_DIGEST(&self->enc_ctx.aes256_eax.ctx, aes256_encrypt, 16, mac);
++#endif
+ 
+ 	return true;
+ }
+@@ -191,7 +204,11 @@ static ssize_t crypto_cipher_aes256_eax_
+ 	crypto_aes256_eax_update_nonce(&self->dec_ctx.aes256_eax);
+ 	EAX_UPDATE(&self->dec_ctx.aes256_eax.ctx, aes256_encrypt, ad_len, ad);
+ 	EAX_DECRYPT(&self->dec_ctx.aes256_eax.ctx, aes256_encrypt, len, dst, src);
++#if NETTLE_VERSION_MAJOR >= 4
++	EAX_DIGEST(&self->dec_ctx.aes256_eax.ctx, aes256_encrypt, mac);
++#else
+ 	EAX_DIGEST(&self->dec_ctx.aes256_eax.ctx, aes256_encrypt, 16, mac);
++#endif
+ 	return len;
+ }
+ 
+--- neatvnc-1.0.1/src/crypto/nettle/hash.c.orig	2026-07-09 20:55:08.000000000 +0200
++++ neatvnc-1.0.1/src/crypto/nettle/hash.c	2026-07-15 17:48:05.688992338 +0200
+@@ -21,7 +21,7 @@
+ #include <stdlib.h>
+ #include <nettle/md5.h>
+ #include <nettle/sha1.h>
+-#include <nettle/sha.h>
++#include <nettle/sha2.h>
+ 
+ struct crypto_hash {
+ 	union {
